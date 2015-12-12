@@ -14,7 +14,7 @@ import org.apache.commons.dbcp2.BasicDataSource;
 public class UserReportController extends  AbstractReportController {
 
 	UserReportView reportView;
-	
+
 	UserReportController(){
 
 	}
@@ -65,22 +65,22 @@ public class UserReportController extends  AbstractReportController {
 //							"ユーザ名", "対戦数", "合計点数" ,"平均点数"
 //					}
 //					));
-//			
-//			
+//
+//
 //			TableModel tm = reportView.reportTable.getModel();
 //			tm.setValueAt("!jjj!", 0, 0);
 			reportView.tableData = (String[][])filterTabledata.toArray(new String[0][0]);
 			reportView.createTable();
 
-			
+
 			//			reportView.initialize((String[][])filterTabledata.toArray(new String[0][0]));
 //			reportView.reportTable.revalidate();
 //			reportView.reportTable.repaint();
-		
+
 		};
 	};
-	
-	
+
+
 	protected Object[][] getTableData(){
 
 		Connection connection = null;
@@ -97,7 +97,7 @@ public class UserReportController extends  AbstractReportController {
 		}
 
 		String SQLString = new String (
-				"SELECT USER_NAME,CNT,TOTAL,AVG FROM USER_REPORT;"
+				"SELECT NAME,CNT,TOTAL,AVG FROM UserReport;"
 				);
 		try {
 			Statement statement = connection.createStatement();
@@ -127,7 +127,7 @@ public class UserReportController extends  AbstractReportController {
 		}
 
 		tableData = (String[][])tableDataList.toArray(new String[0][0]);
-		
+
 		return(tableData);
 	}
 

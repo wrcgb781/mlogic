@@ -10,16 +10,18 @@ import mahjonglogic.HandDataParse.HandDataSet;
 
 public class HandDataDatabase {
 	private HandDataSet hds;
-	private String handIdAndWalletdId;
+	private String handId;
+	private String walletdId;
 
 
 	HandDataDatabase(){
 	}
 
-	public void insert(HandDataSet ahds,String ahandIdAndWalletdId){
+	public void insert(HandDataSet ahds,String ahandId,String awalletdId){
 
 		this.hds = ahds;
-		this.handIdAndWalletdId = ahandIdAndWalletdId;
+		this.handId = ahandId;
+		this.walletdId = awalletdId;
 		Connection connection = null;
 		try {
 			//BasicDataSourceクラスのインスタンス作成
@@ -30,7 +32,7 @@ public class HandDataDatabase {
 			System.err.println(e);
 		}
 
-		System.out.println(handIdAndWalletdId);
+		System.out.println(handId);
 
 
 		//ユーザ点数の書き込み処理
@@ -62,8 +64,9 @@ public class HandDataDatabase {
 	 */
 	private void insertHandData(Connection connection) {
 		String SQLString = new String (
-				"INSERT INTO HANDINFO VALUES ('" +
-						handIdAndWalletdId + "','" +
+				"INSERT INTO HandInfo VALUES ('" +
+						handId + "','" +
+						walletdId + "','" +
 						hds.getRuleset() + "','" +
 						hds.getPrevailingWind() +
 						"');"
@@ -91,8 +94,9 @@ public class HandDataDatabase {
 		for ( int i = 0; i < hds.getUserDataList().size(); ++i  ){
 			if ( hds.getUserDataList().get(i) != null && hds.getUserDataList().get(i)[0].length() > 0){
 				String SQLString = new String (
-						"INSERT INTO USER_POINT VALUES ('" +
-								handIdAndWalletdId + "','" +
+						"INSERT INTO PlayerPoint VALUES ('" +
+								handId + "','" +
+								walletdId + "','" +
 								hds.getUserDataList().get(i)[0] + "','" +
 								hds.getUserDataList().get(i)[1] + "'," +
 								i +

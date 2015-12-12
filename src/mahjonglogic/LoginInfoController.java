@@ -8,9 +8,9 @@ public class LoginInfoController {
 	public LoginInfo li;
 	private UILoginInfoDialog uil;
 
-	LoginInfoController(){
+	LoginInfoController(int type){
 	//ログイン情報クラス
-	li = new LoginInfo(1);
+	li = new LoginInfo(type);
 
 	//ログイン情報入力view
 	uil = new UILoginInfoDialog();
@@ -23,14 +23,15 @@ public class LoginInfoController {
 	//ログイン情報入力viewに値を設定
 	uil.saveLoginId.setSelected(li.getSaveLoginId());
 	uil.loginIdField.setText(li.getLoginId());
-	
+
 	//表示
 	uil.setVisible(true);
 
 
 	}
 
-	 private ActionListener getLoginInfoAction = new ActionListener() {
+
+	private ActionListener getLoginInfoAction = new ActionListener() {
 		public void actionPerformed(ActionEvent e) {
 			char[] pass = uil.passwordField.getPassword();
 			li.setLoginPassword(new String(pass));

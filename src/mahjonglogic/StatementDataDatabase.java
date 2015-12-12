@@ -68,7 +68,7 @@ public class StatementDataDatabase {
 				//		         }
 			} catch (SQLException e) {
 				//ID1のユニーク制約違反の場合は、取得完了フラグを付与
-				String ErrorCHK1 = "[SQLITE_CONSTRAINT]  Abort due to constraint violation (UNIQUE constraint failed: STATEMENT.ID1)";
+				String ErrorCHK1 = "[SQLITE_CONSTRAINT]  Abort due to constraint violation (UNIQUE constraint failed: Statement.StatementCode)";
 				if ( e.getMessage().equals(ErrorCHK1)){
 					 dataWriteOver = true;
 					try {

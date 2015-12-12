@@ -32,8 +32,6 @@ public class HandData  extends MahjongLogic implements ProcessWebData{
 		httpClient.setCookie(aCookie);
 	}
 
-
-
 	@SuppressWarnings("unchecked")
 	public void getWebData(String loginId,String loginPassword,String drmlUrl){
 
@@ -48,16 +46,19 @@ public class HandData  extends MahjongLogic implements ProcessWebData{
 
 		//まず、未取得のhandid・walletidの組み合わせをArrayListで取得する
 		//(XXXX-XXXXX)の形式
-		ArrayList<String> workIdList = getTargetHandIdAndWalletdID();
+		ArrayList<String[]> workIdList = getTargetHandIdAndWalletdID();
 
 		//取得したArrayListをループで順に処理
-		Iterator<String> it = workIdList.iterator();
+		Iterator<String[]> it = workIdList.iterator();
 		while(it.hasNext()){
-			String id2_3 = it.next().toString();
-			//【-】でsplit
-			String Line[] = id2_3.split("-",0);
-			String handid = Line[0];
-			String walletid = Line[1];
+//			String id2_3 = it.next().toString();
+//			//【-】でsplit
+//			String Line[] = id2_3.split("-",0);
+//			String handid = Line[0];
+//			String walletid = Line[1];
+			String handid = it.next()[0].toString();
+			String walletid = it.next()[1].toString();
+
 
 			//処理対象明細のハンド一覧画面URL作成
 			StringBuffer handUrl = makeHandListUrl(firstAccess, jsessionid, handid, walletid);
@@ -126,7 +127,7 @@ public class HandData  extends MahjongLogic implements ProcessWebData{
 
 			HandDataDatabase hddb = new HandDataDatabase();
 			//インサートメソッドの実行
-			hddb.insert(hds,id2_3);
+			hddb.insert(hds,handid,walletid);
 
 
 		}
@@ -161,10 +162,10 @@ public class HandData  extends MahjongLogic implements ProcessWebData{
 
 
 
-static ArrayList<String> getTargetHandIdAndWalletdID (){
+static  ArrayList<String[]> getTargetHandIdAndWalletdID (){
 		Connection connection = null;
 		ResultSet results = null;
-		ArrayList<String> HandIdAndWalletdID = new ArrayList<String>();
+		ArrayList<String[]> HandIdAndWalletdID = new ArrayList<String[]>();
 		try {
 			//BasicDataSourceクラスのインスタンス作成
 			BasicDataSource bds = DataSource.getInstance().getBds();
@@ -175,14 +176,17 @@ static ArrayList<String> getTargetHandIdAndWalletdID (){
 		}
 
 		String SQLString = new String (
-				"SELECT ID FROM SCORE WHERE ID NOT IN (SELECT ID2_3 FROM HANDINFO);;"
+				"SELECT HandId,WalletdId FROM SCORE WHERE HandId NOT IN (SELECT HandId FROM HandInfo);;"
 				);
 		try {
 			Statement statement = connection.createStatement();
 			statement.setQueryTimeout(30); // set timeout to 30 sec.
 			results = statement.executeQuery(SQLString);
 			while (results.next()) {
-				HandIdAndWalletdID.add(results.getString(1));
+				String[] Line = {"",""};
+				Line[0] = results.getString(1);
+				Line[1] = results.getString(2);
+				HandIdAndWalletdID.add(Line.clone());
 			}
 
 

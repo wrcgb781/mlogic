@@ -26,7 +26,7 @@ public class WeekdayReportController extends  AbstractReportController {
 		}
 
 		String SQLString = new String (
-				"SELECT WEEK_DISPLAY,TOTAL_SCORE FROM WEEK_REPORT;"
+				"SELECT WEEK,SCORE FROM WeekReport;"
 				);
 		try {
 			Statement statement = connection.createStatement();

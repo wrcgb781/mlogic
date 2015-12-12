@@ -33,7 +33,7 @@ public class LoginInfo {
 
 		try {
 			SQLString = new String (
-					"SELECT VALUE FROM LOGIN_INFO WHERE ATTRIBUTE = 'LOGIN_ID' AND TYPE_CODE = " + typeCode
+					"SELECT VALUE FROM LoginInfo WHERE ATTRIBUTE = 'LoginName' AND SiteType = " + typeCode
 					);
 
 			
@@ -44,14 +44,14 @@ public class LoginInfo {
 			loginId	= results.getString(1);
 
 			SQLString = new String (
-					"SELECT VALUE FROM LOGIN_INFO WHERE ATTRIBUTE = 'BASE_URL' AND TYPE_CODE = " + typeCode
+					"SELECT VALUE FROM LoginInfo WHERE ATTRIBUTE = 'baseUrl' AND SiteType = " + typeCode
 					);
 			results = statement.executeQuery(SQLString);
 			results.next(); 
 			drmlUrl	= results.getString(1);
 
 			SQLString = new String (
-					"SELECT VALUE FROM LOGIN_INFO WHERE ATTRIBUTE = 'SAVE_LOGIN_NAME' AND TYPE_CODE = " + typeCode
+					"SELECT VALUE FROM LoginInfo WHERE ATTRIBUTE = 'SaveLoginName' AND SiteType = " + typeCode
 					);
 			results = statement.executeQuery(SQLString);
 			results.next(); 
@@ -135,8 +135,8 @@ public class LoginInfo {
 			saveLoginIdStr = String.valueOf(saveLoginId)
 ;			
 			SQLString = new String (
-					"UPDATE LOGIN_INFO SET VALUE = '" + 
-							loginIdStr + "' WHERE ATTRIBUTE = 'LOGIN_ID' and TYPE_CODE = " +
+					"UPDATE LoginInfo SET VALUE = '" + 
+							loginIdStr + "' WHERE ATTRIBUTE = 'LOGIN_ID' and SiteType = " +
 							typeCode 
 					);
 			Statement statement = connection.createStatement();
@@ -144,8 +144,8 @@ public class LoginInfo {
 			statement.execute(SQLString);
 
 			SQLString = new String (
-					"UPDATE LOGIN_INFO SET VALUE = '" + 
-							saveLoginIdStr + "' WHERE ATTRIBUTE = 'SAVE_LOGIN_NAME' and TYPE_CODE = " +
+					"UPDATE LoginInfo SET VALUE = '" + 
+							saveLoginIdStr + "' WHERE ATTRIBUTE = 'SAVE_LOGIN_NAME' and SiteType = " +
 							typeCode 
 					);
 			statement.execute(SQLString);

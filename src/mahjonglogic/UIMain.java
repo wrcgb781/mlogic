@@ -3,11 +3,15 @@ package mahjonglogic;
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.net.URL;
 
 import javax.swing.AbstractListModel;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
@@ -23,6 +27,7 @@ public class UIMain {
 	public JButton exitButton;
 	public JButton displayReportButton;
 	public JList<Object> list;
+	public JComboBox connectSiteComboBox;
 	/**
 	 * Launch the application.
 	 */
@@ -52,7 +57,7 @@ public class UIMain {
 	private void initialize() {
 		frame = new JFrame();
 		frame.setTitle("MajongLogic 戦績集計　メイン画面");
-		frame.setBounds(100, 100, 289, 344);
+		frame.setBounds(100, 100, 289, 371);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 
@@ -72,18 +77,18 @@ public class UIMain {
 
 		getDataButton = new JButton("データ取得");
 		getDataButton.setFont(new Font("ＭＳ Ｐゴシック", Font.PLAIN, 12));
-		getDataButton.setBounds(72, 62, 106, 27);
+		getDataButton.setBounds(163, 62, 106, 27);
 		frame.getContentPane().add(getDataButton);
 
 		displayReportButton = new JButton("集計表示");
 		displayReportButton.setFont(new Font("ＭＳ Ｐゴシック", Font.PLAIN, 12));
-		displayReportButton.setBounds(147, 190, 106, 27);
+		displayReportButton.setBounds(163, 190, 106, 27);
 		frame.getContentPane().add(displayReportButton);
 
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(15, 117, 120, 100);
 		frame.getContentPane().add(scrollPane);
-		
+
 				list = new JList<Object>();
 				scrollPane.setViewportView(list);
 				list.setFont(new Font("ＭＳ Ｐゴシック", Font.PLAIN, 12));
@@ -100,9 +105,22 @@ public class UIMain {
 				list.setBorder(new LineBorder(new Color(0, 0, 0)));
 
 		exitButton = new JButton("終了");
+		exitButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		exitButton.setFont(new Font("ＭＳ Ｐゴシック", Font.PLAIN, 12));
-		exitButton.setBounds(72, 250, 106, 27);
+		exitButton.setBounds(163, 295, 106, 27);
 		frame.getContentPane().add(exitButton);
+
+		connectSiteComboBox = new JComboBox();
+		connectSiteComboBox.setModel(new DefaultComboBoxModel(new String[] {"DORA麻雀", "DoragonKong"}));
+		connectSiteComboBox.setBounds(12, 65, 134, 21);
+		frame.getContentPane().add(connectSiteComboBox);
+
+		JButton button = new JButton("設定");
+		button.setBounds(163, 246, 106, 27);
+		frame.getContentPane().add(button);
 
 		URL url = this.getClass().getResource("img/icon.png");
 		System.out.println(url);

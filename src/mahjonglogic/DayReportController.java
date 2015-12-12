@@ -31,7 +31,7 @@ public class DayReportController extends  AbstractReportController {
 		}
 
 		String SQLString = new String (
-				"SELECT DATE,WEEKDAY,TOTAL_SCORE FROM DAY_REPORT LIMIT 100;"
+				"SELECT Date,Week,Score FROM DayReport LIMIT 100;"
 				);
 		try {
 			Statement statement = connection.createStatement();

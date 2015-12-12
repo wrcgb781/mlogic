@@ -26,7 +26,7 @@ public class HourReportController extends  AbstractReportController {
 		}
 
 		String SQLString = new String (
-				"SELECT HOUR,TOTAL_SCORE FROM HOUR_REPORT;"
+				"SELECT Hour,Score FROM HourReport;"
 				);
 		try {
 			Statement statement = connection.createStatement();

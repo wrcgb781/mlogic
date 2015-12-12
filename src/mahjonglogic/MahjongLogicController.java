@@ -41,7 +41,7 @@ public class MahjongLogicController {
 	private ActionListener getDataAction = new ActionListener() {
 		public void actionPerformed(ActionEvent e) {
 
-			LoginInfoController  lic = new LoginInfoController();
+			LoginInfoController lic = new LoginInfoController(view.connectSiteComboBox.getSelectedIndex());
 			sd = new StatementData();
 			sd.getWebData(lic.li.getLoginId(), lic.li.getLoginPassword(), lic.li.getDrmlUrl());
 
