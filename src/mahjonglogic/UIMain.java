@@ -28,6 +28,8 @@ public class UIMain {
 	public JButton displayReportButton;
 	public JList<Object> list;
 	public JComboBox connectSiteComboBox;
+	public JButton initializationButton;
+	public JButton configButton;
 	/**
 	 * Launch the application.
 	 */
@@ -118,9 +120,15 @@ public class UIMain {
 		connectSiteComboBox.setBounds(12, 65, 134, 21);
 		frame.getContentPane().add(connectSiteComboBox);
 
-		JButton button = new JButton("設定");
-		button.setBounds(163, 246, 106, 27);
-		frame.getContentPane().add(button);
+		initializationButton = new JButton("初期化");
+		initializationButton.setFont(new Font("ＭＳ Ｐゴシック", Font.PLAIN, 12));
+		initializationButton.setBounds(163, 246, 106, 27);
+		frame.getContentPane().add(initializationButton);
+		
+		configButton = new JButton("設定");
+		configButton.setFont(new Font("ＭＳ Ｐゴシック", Font.PLAIN, 12));
+		configButton.setBounds(27, 246, 106, 27);
+		frame.getContentPane().add(configButton);
 
 		URL url = this.getClass().getResource("img/icon.png");
 		System.out.println(url);

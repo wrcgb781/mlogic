@@ -53,11 +53,11 @@ public class HandData  extends MahjongLogic implements ProcessWebData{
 		while(it.hasNext()){
 //			String id2_3 = it.next().toString();
 //			//【-】でsplit
-//			String Line[] = id2_3.split("-",0);
+			String Line[] = it.next();
 //			String handid = Line[0];
 //			String walletid = Line[1];
-			String handid = it.next()[0].toString();
-			String walletid = it.next()[1].toString();
+			String handid = Line[0];
+			String walletid = Line[1];
 
 
 			//処理対象明細のハンド一覧画面URL作成
@@ -176,7 +176,7 @@ static  ArrayList<String[]> getTargetHandIdAndWalletdID (){
 		}
 
 		String SQLString = new String (
-				"SELECT HandId,WalletdId FROM SCORE WHERE HandId NOT IN (SELECT HandId FROM HandInfo);;"
+				"SELECT HandId,WalletdId FROM Statement WHERE StatementKubun = 1 and HandId NOT IN (SELECT HandId FROM HandInfo);"
 				);
 		try {
 			Statement statement = connection.createStatement();

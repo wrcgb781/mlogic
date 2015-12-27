@@ -27,6 +27,8 @@ public class MahjongLogicController {
 		view.getDataButton.addActionListener(getDataAction);
 		view.exitButton.addActionListener(exitAction);
 		view.displayReportButton.addActionListener(openReport);
+		view.initializationButton.addActionListener(initialization);
+		view.configButton.addActionListener(config);
 		//
 
 		//viewを表示
@@ -74,4 +76,24 @@ public class MahjongLogicController {
 		};
 	};
 
+	//初期設定用ボタン
+	private ActionListener initialization = new ActionListener() {
+		public void actionPerformed(ActionEvent e) {
+
+			ExecSqlFile es = new ExecSqlFile();
+			es.initialization();
+		};
+	};
+
+	//設定ボタン
+	private ActionListener config = new ActionListener() {
+		public void actionPerformed(ActionEvent e) {
+
+			ConfigController c = new ConfigController();
+			
+		};
+	};
+	
+	
+	
 }
