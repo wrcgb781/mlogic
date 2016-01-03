@@ -21,6 +21,13 @@ public class DataSource {
 			//dbcp.propertiesを読み込む
 			InputStream is = ClassLoader.getSystemResourceAsStream("mahjonglogic/dbcp.properties");
 			properties.load(is);
+
+			//url文字列の作成と追加
+			Config c = new Config();
+			c.getFileMahjonglogicConfig();
+			properties.put("url","jdbc:sqlite:/" + c.getMahjonglogicConfig().get("databasePath"));
+
+			
 			this.bds = BasicDataSourceFactory.createDataSource(properties);
 		} catch (IOException e) {
 			throw new RuntimeException(e);

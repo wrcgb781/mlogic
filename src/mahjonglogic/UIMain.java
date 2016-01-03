@@ -131,7 +131,7 @@ public class UIMain {
 		frame.getContentPane().add(configButton);
 
 		URL url = this.getClass().getResource("img/icon.png");
-		System.out.println(url);
+//		System.out.println(url);
 	    ImageIcon icon = new ImageIcon(url);
 	    frame.setIconImage(icon.getImage());
 
